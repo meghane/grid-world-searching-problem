@@ -6,6 +6,9 @@ from minigrid.core.grid import Grid
 from minigrid.core.world_object import Goal, Wall, Lava
 from minigrid.core.mission import MissionSpace
 import time
+import pygame
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="pygame.sysfont") # ignores warning
 
 # ==================
 # CUSTOM ENVIRONMENT
@@ -22,7 +25,7 @@ class Custom12x12Env(MiniGridEnv):
         
     @staticmethod
     def _gen_mission():
-        return "reach the goal"
+        return "REACH THE GOAL"
         
     def _gen_grid(self, width, height):
         self.grid = Grid(width, height)
@@ -256,6 +259,8 @@ if __name__ == "__main__":
     
     while not (terminated or truncated) and step_count < 300:
         demo_env_ql.render()
+        if step_count == 0:
+            pygame.display.set_caption("Q-Learning Agent (Off-Policy)")
         action = np.argmax(Q_ql[state[0], state[1], state[2]])
         obs, reward, terminated, truncated, info = demo_env_ql.step(action)
         state = get_state(demo_env_ql)
@@ -285,6 +290,8 @@ if __name__ == "__main__":
     
     while not (terminated or truncated) and step_count < 300:
         demo_env_sarsa.render()
+        if step_count == 0:
+            pygame.display.set_caption("SARSA Agent (On-Policy)")
         action = np.argmax(Q_sarsa[state[0], state[1], state[2]])
         obs, reward, terminated, truncated, info = demo_env_sarsa.step(action)
         state = get_state(demo_env_sarsa)
