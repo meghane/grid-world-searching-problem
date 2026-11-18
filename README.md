@@ -37,6 +37,11 @@ Once training finishes, the script sequentially launches two interactive Pygame 
    * *Window Title:* `SARSA Agent (On-Policy)`
    * *Behavior:* Demonstrates cautious, risk-averse navigation near hazard boundaries.
 
+### Q-Learning Agent (Off-Policy)
+![Q-Learning Demo](qlearning-livedemo.gif)
+
+### SARSA Agent (On-Policy)
+![SARSA Demo](sarsa-livedemo.gif)
 
 ---
 
